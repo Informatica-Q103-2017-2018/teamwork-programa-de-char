@@ -2,9 +2,11 @@
 #include<string.h>
 #define N 5000
 
-	
+void valoracion(int nota);
 // void implica que main *no* devuelve nada
+
 int main()
+
 {
   int eleccion,conectado;   // Conectado tendra 3 valores base:  0 estamos sin estado, 1 estamos conectados, 2 decidimos salir
   char user[N];
@@ -13,14 +15,20 @@ int main()
   char pass[N];
   char nickname[N];
   int cont;
+  int nota;
+  char comentario[N];
   conectado=0;
   int i=0;
   FILE *us;
+  FILE *matematicas;
+  FILE *fisica;
+  FILE *quimica;
+  FILE *libre;
   printf("Bienvenido al foro de la universidad.\n");
   printf("Quieres crear un nuevo usuario o quieres acceder con uno? \n");
   printf("1- Nuevo usuario: \n");
-  printf("2- Acceder: \n");
-  printf("3- Salir: \n");
+  printf("2- Salir: \n");
+  
   while(conectado==0){
   		scanf("%i", &eleccion);
   		switch(eleccion){
@@ -40,6 +48,7 @@ int main()
 									}
          						}
          					printf("\n");
+
          		do{
 				printf("Introduce otra vez tu password (Maximo 10 caracteres):\n");
   				 for(i=0; i<10;i++){	
@@ -50,6 +59,7 @@ int main()
          			}
          					printf("\n");
          			}
+
          		while(strcmp(pass1,pass2)!=0);{	
          				printf("Password correcta\n");
 				 }
@@ -59,31 +69,40 @@ int main()
 						printf("Error en el sistema.");
 						return -1;
 						}				
+
 					fprintf(us ,"%s %s", user, pass1);							
 				 	fclose(us);
 				 	conectado=1;
+
 						while(conectado==1){
 							printf("Menu.\n");  
 					  		printf("1- Visualiza post: \n");
-					  		printf("2- Crea Post: \n");
-					  		printf("3- Salir: \n");
+					  		printf("2- Salir: \n");
 					  		scanf("%i", &eleccion);
 					  		switch(eleccion){
 					  			case 1:
 					  				break;
 					  			case 2:
+					  				printf("Por ultimo, queremos saber la nota con la que valoras el foro\n");
+									scanf("%d", &nota);
+									printf("Dejanos alguna recomendacion para mejorar\n");
+									scanf("%s", comentario);
+	
+									valoracion(nota);
 					  				break;
+
 					  			case 3:
 					  				conectado=2;
 					  				printf("Vuelve pronto!\n");
 					  				break;
+
 					  			default:
 					  				printf("Fallo de opcion.");
 					  				break;
   								}
   							}
-  					
   				break;
+
   			case 2: 	
 					conectado=0;
 					printf("Inicia sesion:\n");
@@ -95,6 +114,7 @@ int main()
         				printf("*");
         					if(pass[i]=='\r')
             				break;
+
             		}
 						us = fopen("C:/Foro/usuarios.txt", "a");
 						if(us == NULL){
@@ -103,7 +123,6 @@ int main()
 						}				
 							fprintf(us ,"%s %s", nickname, pass);							
 				 			fclose(us);
-							 	
 						us = fopen("C:/Foro/usuarios.txt", "r");
 						if(us == NULL){
 						printf("Error en el sistema.");
@@ -116,36 +135,98 @@ int main()
 							printf("\n");
 									printf("Bienvenido %s !\n",nickname);
 						fclose(us);
+
 									conectado=1;
 										while(conectado==1){
 										printf("Menu.\n");  
 								  		printf("1- Visualiza post: \n");
-								  		printf("2- Crea Post: \n");
-								  		printf("3- Salir: \n");
+								  		printf("2- Salir: \n");
 								  		scanf("%i", &eleccion);
 								  		switch(eleccion){
 								  			case 1:
+								  				printf("Elige un tema para acceder al foro:\n");
+  												printf("1- Fisica \n");
+  												printf("2- Quimica \n");
+  												printf("3- Matematicas \n");
+  												printf("4- Tematica libre\n");
+  												scanf("%i",&eleccion);
+  												switch(eleccion){
+  													case 1:
+  														printf("\n Has elegido fisica");
+  														fisica = fopen("C:/Foro/fisica.txt","a");
+  														break;
+
+  													case 2:
+  														printf("\n Has elegido quimica");
+  														quimica = fopen("C:/Foro/quimica.txt","a");
+  														break;
+
+  													case 3:
+  														printf("\n Has elegido matematicas");
+  														matematicas = fopen("C:/Foro/matematicas.txt","a");
+  														break;
+
+  													case 4:
+  														printf("\n Has elegido iniciar un nuevo tema de optativas");
+  														libre = fopen("C:/Foro/libre.txt","a");
+  														break;
+
+  													default:
+  														printf("\n Eleccion erronea");
+  														break;
+				  								}
 								  				break;
+
 								  			case 2:
-								  				break;
-								  			case 3:
 								  				conectado=2;
+								  				printf("Por ultimo, queremos saber la nota con la que valoras el foro\n");
+												scanf("%d", &nota);
+												printf("Dejanos alguna recomendacion para mejorar\n");
+												scanf("%s", comentario);
+	
+												valoracion(nota);
 								  				printf("Vuelve pronto!\n");
 								  				break;
+
 								  			default:
 								  				printf("Fallo de opcion.");
 								  				break;
+
   											}
   									}
 						}
 		  		break;
+
 		  	case 3:
+		  			printf("Por ultimo, queremos saber la nota con la que valoras el foro\n");
+					scanf("%d", &nota);
+						printf("Dejanos alguna recomendacion para mejorar\n");
+					scanf("%s", comentario);
+	
+					valoracion(nota);
+					
   					printf("Vuelve pronto!\n");
   					conectado=2;
   					break;
+
   			default:
   				printf("Esa opcion no es valida repite.\n");
   				break;
+
   		}  	
-	}		
+
+void valoracion(int nota){
+	if(nota>=5){
+		printf("Nos alegra que te guste nuestro foro\n");
+	}
+	else
+	{
+		printf("Intentaremos mejorarlo lo antes posible para poder llegar a un aprobado. Gracias por tu tiempo\n");
+	}
+	
+	printf("Nos has valorado con un %d\n",nota);	
+	printf("Intentaremos incluir tus recomendaciones cuanto antes\n");
 }
+			
+
+
