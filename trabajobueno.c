@@ -132,20 +132,23 @@ int main()
   												scanf("%i",&eleccion);
   												switch(eleccion){
   													case 1:
-  														printf("\n Has elegido futbol");
+  														printf("\n Has elegido fisica");
   														futbol = fopen("C:/Foro/futbol.txt","a");
   														break;
   													case 2:
-  														printf("\n Has elegido coches");
+  														printf("\n Has elegido quimica");
   														coches = fopen("C:/Foro/coches.txt","a");
   														break;
   													case 3:
-  														printf("\n Has elegido una tematica general");
-  														general = fopen("C:/Foro/general.txt","a");
+  														printf("\n Has elegido matematicas");
+  														matematicas = fopen("C:/Foro/general.txt","a");
   														break;
   													case 4:
-  														printf("\n Has elegido iniciar un nuevo tema de discusion");
+  														printf("\n Has elegido iniciar un nuevo tema de optativas");
   														libre = fopen("C:/Foro/libre.txt","a");
+  														break;
+  													default 
+  														printf("\n Eleccion erronea");
   														break;
 				  								}
 								  				break;
