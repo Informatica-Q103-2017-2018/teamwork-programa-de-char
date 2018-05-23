@@ -1,5 +1,8 @@
-Prueba lectura matematicas
+Prueba lectura matematicas.
 
 Esta interesante.
-Andrea:
-Perfecto_desde_el_ingreso
+
+Daniel:
+Primero_sin_espacios.
+Daniel:
+Segundo_comentario.
