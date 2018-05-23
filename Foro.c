@@ -73,7 +73,7 @@ int main(){
          				printf("Password correcta\n");
 				 }
 
-					us = fopen("C:/Foro/usuarios.txt", "a");
+					us = fopen("foros/usuarios.txt", "a");
 						if(us == NULL){
 						printf("Error en el sistema.");
 						return -1;
@@ -103,7 +103,7 @@ int main(){
   												switch(eleccion){
   													case 1:
   														printf("\n Has elegido fisica\n ");
-  														fisica = fopen("C:/Foro/fisica.txt","r");
+  														fisica = fopen("foros/fisica.txt","r");
   														leerPost(fisica,lectura);
   														fclose(fisica);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -112,7 +112,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){  
 														  		printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
-  																fisica = fopen("C:/Foro/fisica.txt","a");
+  																fisica = fopen("foros/fisica.txt","a");
   																escribirPost(fisica,nickname,escritura);
   																fclose(fisica);
 														}
@@ -120,7 +120,7 @@ int main(){
 
   													case 2:
   														printf("\n Has elegido quimica\n ");
-  														quimica = fopen("C:/Foro/quimica.txt","r");
+  														quimica = fopen("foros/quimica.txt","r");
   														leerPost(quimica,lectura);
   														fclose(quimica);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -129,7 +129,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){
   																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
-  																quimica = fopen("C:/Foro/quimica.txt","a");
+  																quimica = fopen("foros/quimica.txt","a");
   																escribirPost(quimica,nickname,escritura);
   																fclose(quimica);
 														  }
@@ -137,7 +137,7 @@ int main(){
 
   													case 3:
   														printf("\n Has elegido matematicas\n ");
-  														matematicas = fopen("C:/Foro/matematicas.txt","r");
+  														matematicas = fopen("foros/matematicas.txt","r");
   														leerPost(matematicas,lectura);
   														fclose(matematicas);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -146,7 +146,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){
   																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
-  																matematicas = fopen("C:/Foro/matematicas.txt","a");
+  																matematicas = fopen("foros/matematicas.txt","a");
   																escribirPost(matematicas,nickname,escritura);
   																fclose(matematicas);
 														  }
@@ -154,7 +154,7 @@ int main(){
 
   													case 4:
   														printf("\n Has elegido iniciar un nuevo tema de optativas\n ");
-  														libre = fopen("C:/Foro/libre.txt","r");
+  														libre = fopen("foros/libre.txt","r");
   														leerPost(libre,lectura);
   														fclose(libre);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -163,7 +163,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){
   															printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
-  															libre = fopen("C:/Foro/libre.txt","a");
+  															libre = fopen("foros/libre.txt","a");
   															escribirPost(libre,nickname,escritura);
   															fclose(libre);
 														  }
@@ -223,7 +223,7 @@ int main(){
          					printf("Hemos ingresado: \n");
          					printf("usuario: %s\n",nickname);
          					printf("Pass2: %s\n",pass);         				
-						us = fopen("C:/Foro/usuarios.txt", "r");						
+						us = fopen("foros/usuarios.txt", "r");						
 						if(us == NULL){
 						printf("Error en el sistema.");
 						return -1;
@@ -263,7 +263,7 @@ int main(){
   												switch(eleccion){
   													case 1:
   														printf("\n Has elegido fisica\n ");
-  														fisica = fopen("C:/Foro/fisica.txt","r");
+  														fisica = fopen("foros/fisica.txt","r");
   														leerPost(fisica,lectura);
   														fclose(fisica);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -272,7 +272,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){  
 														  		printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
-  																fisica = fopen("C:/Foro/fisica.txt","a");
+  																fisica = fopen("foros/fisica.txt","a");
   																escribirPost(fisica,nickname,escritura);
   																fclose(fisica);
 														}
@@ -280,7 +280,7 @@ int main(){
 
   													case 2:
   														printf("\n Has elegido quimica\n ");
-  														quimica = fopen("C:/Foro/quimica.txt","r");
+  														quimica = fopen("foros/quimica.txt","r");
   														leerPost(quimica,lectura);
   														fclose(quimica);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -289,7 +289,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){
   																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
-  																quimica = fopen("C:/Foro/quimica.txt","a");
+  																quimica = fopen("foros/quimica.txt","a");
   																escribirPost(quimica,nickname,escritura);
   																fclose(quimica);
 														  }
@@ -297,7 +297,7 @@ int main(){
 
   													case 3:
   														printf("\n Has elegido matematicas\n ");
-  														matematicas = fopen("C:/Foro/matematicas.txt","r");
+  														matematicas = fopen("foros/matematicas.txt","r");
   														leerPost(matematicas,lectura);
   														fclose(matematicas);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -306,7 +306,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){
   																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
-  																matematicas = fopen("C:/Foro/matematicas.txt","a");
+  																matematicas = fopen("foros/matematicas.txt","a");
   																escribirPost(matematicas,nickname,escritura);
   																fclose(matematicas);
 														  }
@@ -314,7 +314,7 @@ int main(){
 
   													case 4:
   														printf("\n Has elegido iniciar un nuevo tema de optativas\n ");
-  														libre = fopen("C:/Foro/libre.txt","r");
+  														libre = fopen("foros/libre.txt","r");
   														leerPost(libre,lectura);
   														fclose(libre);
   														printf("\n Quieres añadir tu contestación? \n");
@@ -323,7 +323,7 @@ int main(){
   														scanf("%i",&eleccion);
   														if(eleccion==1){
   															printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
-  															libre = fopen("C:/Foro/libre.txt","a");
+  															libre = fopen("foros/libre.txt","a");
   															escribirPost(libre,nickname,escritura);
   															fclose(libre);
 														  }
