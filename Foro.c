@@ -1,11 +1,18 @@
 #include <stdio.h>
 #include<string.h>
-#define N 5000
+#define N 50
+
+typedef struct{
+	char nombre[N];
+	char apellido1[N];
+	char apellido2[N];
+	char grado[N];
+}datos;
 
 void valoracion(int nota);
 void leerPost(FILE* auxiliar,char lectura[N]);
 void escribirPost(FILE* auxiliar,char nickname[N],char escritura[N]);
-// void implica que main *no* devuelve nada
+
 
 int main(){
   int eleccion,conectado;   // Conectado tendra 3 valores base:  0 estamos sin estado, 1 estamos conectados, 2 decidimos salir
@@ -22,6 +29,7 @@ int main(){
   int cont;
   int nota;
   char comentario[N];
+  datos datos[N];
   conectado=0;
   int i=0;
   FILE *us;
@@ -39,7 +47,12 @@ int main(){
   while(conectado==0){
   		scanf("%i", &eleccion);
   		switch(eleccion){
-  			case 1:  				
+  			case 1:  
+			  	printf("Rellena con tus datos\n");
+				printf("Nombre y apellidos\n");
+				scanf("%s %s %s",&datos[N].nombre, &datos[N].apellido1, &datos[N].apellido2);
+				printf("Grado en ingenieria: Quimica, Electrica, Mecanica, Electronica o Diseño\n");
+				scanf("%s", &datos[N].grado);				
   				printf("Introduce tu usuario:\n");
   				scanf("%s", user);
   				printf("El usuario es %s\n",user);
@@ -50,7 +63,7 @@ int main(){
         					if(pass1[i]=='\r')
             					break;
 							if(i==9){
-								printf("Estas al limite de la contraseña, no puedes introducir mas caracteres.\n");
+								printf("Estas al limite de la password, no puedes introducir mas caracteres.\n");
 								break;
 									}
          						}
@@ -79,7 +92,8 @@ int main(){
 						return -1;
 						}				
 
-					fprintf(us ,"%s-%s\n", user, pass1);									
+					fprintf(us ,"%s-%s\n", user, pass1);
+					fprintf(us,"%s %s %s : Grado de %s\n",datos[N].nombre,datos[N].apellido1,datos[N].apellido2,datos[N].grado);									
 				 	fclose(us);
 				 	conectado=1;
 				 	strcpy(nickname,user);
@@ -106,13 +120,14 @@ int main(){
   														fisica = fopen("foros/fisica.txt","r");
   														leerPost(fisica,lectura);
   														fclose(fisica);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar?\n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){  
 														  		printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
-  																fisica = fopen("foros/fisica.txt","a");
+  																scanf("[%^\n]",&escritura);
+															  	fisica = fopen("foros/fisica.txt","a");
   																escribirPost(fisica,nickname,escritura);
   																fclose(fisica);
 														}
@@ -123,7 +138,7 @@ int main(){
   														quimica = fopen("foros/quimica.txt","r");
   														leerPost(quimica,lectura);
   														fclose(quimica);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -140,7 +155,7 @@ int main(){
   														matematicas = fopen("foros/matematicas.txt","r");
   														leerPost(matematicas,lectura);
   														fclose(matematicas);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -157,7 +172,7 @@ int main(){
   														libre = fopen("foros/libre.txt","r");
   														leerPost(libre,lectura);
   														fclose(libre);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -238,9 +253,9 @@ int main(){
 					 			printf("Buscamos:  %s\n",parabusqueda);
 					 			printf("Obtenido de fichero:  %s\n",prueba);					
 					 			if(strcmp(parabusqueda,prueba)!=0){
-									printf("Contraseña incorrecta\n");
+									printf("Password incorrecta\n");
 								}else{
-									printf("Contraseña correcta\n");
+									printf("Password correcta\n");
 								}
 					 		}
 				 			fclose(us);		
@@ -266,7 +281,7 @@ int main(){
   														fisica = fopen("foros/fisica.txt","r");
   														leerPost(fisica,lectura);
   														fclose(fisica);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -283,7 +298,7 @@ int main(){
   														quimica = fopen("foros/quimica.txt","r");
   														leerPost(quimica,lectura);
   														fclose(quimica);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -300,7 +315,7 @@ int main(){
   														matematicas = fopen("foros/matematicas.txt","r");
   														leerPost(matematicas,lectura);
   														fclose(matematicas);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -317,7 +332,7 @@ int main(){
   														libre = fopen("foros/libre.txt","r");
   														leerPost(libre,lectura);
   														fclose(libre);
-  														printf("\n Quieres añadir tu contestación? \n");
+  														printf("\n Quieres contestar? \n");
   														printf("1-Si \n");
   														printf("2-No \n");
   														scanf("%i",&eleccion);
@@ -354,6 +369,7 @@ int main(){
 		  		break;
 		  	case 3:
 		  			printf("Por ultimo, queremos saber la nota con la que valoras el foro\n");
+		  			printf("0 si lo odias, y 10 si te encanta\n");
 					scanf("%d", &nota);
 					printf("Dejanos alguna recomendacion para mejorar\n");
 					scanf("%s", comentario);	
@@ -384,7 +400,6 @@ void valoracion(int nota){
   	void escribirPost(FILE* auxiliar,char nickname[N],char escritura[N]){	
   		fprintf(auxiliar ,"%s:\n", nickname);	
   		printf("Escribe lo que quieras añadir y termina cuando quieras pulsando enter: \n");
-  		scanf("%s", escritura);
   		fprintf(auxiliar ,"%s\n", escritura);	
 }
   
