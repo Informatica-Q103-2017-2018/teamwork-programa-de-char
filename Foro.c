@@ -2,6 +2,9 @@
 #include<string.h>
 #define N 50
 
+// La validacion de contraseña no funciona correctamente porque al traer el regsitro del fichero me añade el salto de linea y la comparacion no es correcta.
+// Si hubiera un solo registro en el fichero de los usuarios, ejemplo: "dani-cuenca" si funcionaria la comprobacion por que el registro no tendria el salto de linea
+
 typedef struct{
 	char nombre[N];
 	char apellido1[N];
@@ -57,11 +60,15 @@ int main(){
   				scanf("%s", user);
   				printf("El usuario es %s\n",user);
   				printf("Introduce tu password (Maximo 10 caracteres):\n");
+  				char caract2;
   				 for(i=0; i<10;i++){				 
-     				   pass1[i]=getch();
-        				printf("*");
-        					if(pass1[i]=='\r')
-            					break;
+     				   caract2=getch();
+        				if(caract2=='\r'){        					
+        						break;
+							}else{
+								pass1[i]=caract2;
+							}
+            					printf("*");
 							if(i==9){
 								printf("Estas al limite de la password, no puedes introducir mas caracteres.\n");
 								break;
@@ -71,11 +78,16 @@ int main(){
 
          		do{
 				printf("Introduce otra vez tu password (Maximo 10 caracteres):\n");
+				
   				 for(i=0; i<10;i++){	
-     				   pass2[i]=getch();
-        				printf("*");
-        					if(pass2[i]=='\r')
-            				break;
+     				   caract2=getch();
+        			
+        					if(caract2=='\r'){        					
+        						break;
+							}else{
+								pass2[i]=caract2;
+							}
+            					printf("*");
          			}
          					printf("\n");
          					printf("Las pass por ahora son: \n");
@@ -125,8 +137,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){  
-														  		printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
-  																scanf("[%^\n]",&escritura);
+														  		printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
 															  	fisica = fopen("foros/fisica.txt","a");
   																escribirPost(fisica,nickname,escritura);
   																fclose(fisica);
@@ -143,7 +154,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){
-  																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
+  																printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
   																quimica = fopen("foros/quimica.txt","a");
   																escribirPost(quimica,nickname,escritura);
   																fclose(quimica);
@@ -160,7 +171,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){
-  																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
+  																printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
   																matematicas = fopen("foros/matematicas.txt","a");
   																escribirPost(matematicas,nickname,escritura);
   																fclose(matematicas);
@@ -177,7 +188,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){
-  															printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
+  															printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
   															libre = fopen("foros/libre.txt","a");
   															escribirPost(libre,nickname,escritura);
   															fclose(libre);
@@ -227,11 +238,15 @@ int main(){
 					printf("Nickname:\n");
 					scanf("%s",nickname);
 					printf("Password:\n");
+					char caract;
 					for(i=0; i<10;i++){	
-     				   pass[i]=getch();
-        				printf("*");
-        					if(pass[i]=='\r')
-            				break;
+     				   caract=getch();        			
+        					if(caract=='\r'){        					
+        						break;
+							}else{
+								pass[i]=caract;
+							}
+            					printf("*");
 
             		}
             			printf("\n");
@@ -251,7 +266,14 @@ int main(){
 					 			printf("Concatenamos:  %s\n",nickname);
 					 			printf("Concatenamos:  %s\n",pass);
 					 			printf("Buscamos:  %s\n",parabusqueda);
-					 			printf("Obtenido de fichero:  %s\n",prueba);					
+					 			printf("Obtenido de fichero:  %s\n",prueba);									
+								int s=strlen(parabusqueda);
+								printf("Tam total 1: %i \n",s);	
+								//Con estos datos vemos que los valores son exactamente iguales o eso parece segun el ASCII, pero no los da y no hemos sabido dar con el fallo											
+								int z=strlen(prueba);
+								 printf("Tam total 2: %i \n",z);								
+								 int numero=strcmp(parabusqueda,prueba);	
+								 printf ("Este es el numero que devuelve strcmp %i \n",numero);
 					 			if(strcmp(parabusqueda,prueba)!=0){
 									printf("Password incorrecta\n");
 								}else{
@@ -286,7 +308,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){  
-														  		printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
+														  		printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");																
   																fisica = fopen("foros/fisica.txt","a");
   																escribirPost(fisica,nickname,escritura);
   																fclose(fisica);
@@ -303,7 +325,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){
-  																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
+  																printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
   																quimica = fopen("foros/quimica.txt","a");
   																escribirPost(quimica,nickname,escritura);
   																fclose(quimica);
@@ -320,7 +342,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){
-  																printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
+  																printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
   																matematicas = fopen("foros/matematicas.txt","a");
   																escribirPost(matematicas,nickname,escritura);
   																fclose(matematicas);
@@ -337,7 +359,7 @@ int main(){
   														printf("2-No \n");
   														scanf("%i",&eleccion);
   														if(eleccion==1){
-  															printf("\n Estamos teniendo problemas con la letra que añade un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
+  															printf("\n Estamos teniendo problemas con la letra que introduce un espacio, cuando quieras indicar un espacio entre palabras usa '_' mientras lo arreglamos. \n");	
   															libre = fopen("foros/libre.txt","a");
   															escribirPost(libre,nickname,escritura);
   															fclose(libre);
@@ -396,10 +418,13 @@ void valoracion(int nota){
 		printf("Nos has valorado con un %d\n",nota);	
 		printf("Intentaremos incluir tus recomendaciones cuanto antes\n");
 	}
+  // No hemos sabido arreglar el problema con los guiones usando scanf
+  //Y tampoco arreglamos la escritura doble, use fflush(stdin) pero conseguia que funcionara escribiendo solo una vez
   
   	void escribirPost(FILE* auxiliar,char nickname[N],char escritura[N]){	
   		fprintf(auxiliar ,"%s:\n", nickname);	
-  		printf("Escribe lo que quieras añadir y termina cuando quieras pulsando enter: \n");
+  		printf("Escribe lo que quieras introduce y termina cuando quieras pulsando enter: \n");
+  		scanf("%s",escritura);
   		fprintf(auxiliar ,"%s\n", escritura);	
 }
   
@@ -409,7 +434,6 @@ void valoracion(int nota){
 		fgets(lectura,150,auxiliar);		
 		printf("%s\n",lectura);								
 	}
-	
 }
 
 		   			
